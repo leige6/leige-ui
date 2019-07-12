@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 const scope = 'server'
 export const loginByUsername = (username, password, code, randomStr) => {
-  const grantType = 'password'
+  const grant_type = 'password'
   return request({
     url: '/auth/oauth/token',
     headers: {
@@ -11,12 +11,12 @@ export const loginByUsername = (username, password, code, randomStr) => {
       'Authorization': 'Basic cGlnOnBpZw=='
     },
     method: 'post',
-    params: { username, password, randomStr, code, grantType, scope }
+    params: { username, password, randomStr, code, grant_type, scope }
   })
 }
 
 export const refreshToken = (refreshToken) => {
-  const grantType = 'refresh_token'
+  const grant_type = 'refresh_token'
   return request({
     url: '/auth/oauth/token',
     headers: {
@@ -25,7 +25,7 @@ export const refreshToken = (refreshToken) => {
       'Authorization': 'Basic cGlnOnBpZw=='
     },
     method: 'post',
-    params: { refreshToken, grantType, scope }
+    params: { refreshToken, grant_type, scope }
   })
 }
 

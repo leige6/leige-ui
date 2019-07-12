@@ -88,7 +88,6 @@ const user = {
           commit('SET_ACCESS_TOKEN', data.access_token)
           commit('SET_REFRESH_TOKEN', data.refresh_token)
           commit('SET_EXPIRES_IN', data.expires_in)
-          commit('CLEAR_LOCK')
           resolve()
         }).catch(error => {
           reject(error)
@@ -118,7 +117,6 @@ const user = {
           commit('SET_ACCESS_TOKEN', data.access_token)
           commit('SET_REFRESH_TOKEN', data.refresh_token)
           commit('SET_EXPIRES_IN', data.expires_in)
-          commit('CLEAR_LOCK')
           resolve()
         }).catch(error => {
           reject(error)
@@ -137,7 +135,6 @@ const user = {
           commit('SET_EXPIRES_IN', '')
           commit('SET_ROLES', [])
           commit('DEL_ALL_TAG')
-          commit('CLEAR_LOCK')
           resolve()
         }).catch(error => {
           reject(error)
@@ -154,7 +151,6 @@ const user = {
         commit('SET_REFRESH_TOKEN', '')
         commit('SET_ROLES', [])
         commit('DEL_ALL_TAG')
-        commit('CLEAR_LOCK')
         resolve()
       })
     }

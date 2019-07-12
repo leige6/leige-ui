@@ -10,7 +10,8 @@ import { loadStyle } from './utils/util'
 import { urls, iconfontUrl, iconfontVersion } from '@/config/env'
 import '@/styles/index.scss' // global css
 import App from './App'
-import router from './router'
+import router from './router/index'
+import VueRouter from 'vue-router'
 import store from './store'
 import '@/icons' // icon
 import '@/permission' // permission control
@@ -23,7 +24,7 @@ Object.keys(urls).forEach(key => {
 iconfontVersion.forEach(ele => {
   loadStyle(iconfontUrl.replace('$key', ele))
 })
-
+Vue.use(VueRouter)
 Vue.config.productionTip = false
 Vue.use(ElementUI, { locale })
 /* eslint-disable no-new */

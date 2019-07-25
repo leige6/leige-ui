@@ -1,4 +1,4 @@
-import request from '@/router/axios'
+import request from '@/utils/request'
 
 export function GetMenu () {
   return request({

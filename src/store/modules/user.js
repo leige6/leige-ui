@@ -1,6 +1,28 @@
 import {getUserInfo, loginByUsername, logout, refreshToken} from '@/api/login'
-import { encryption } from '@/utils/util'
+import {isURL} from '@/utils/validate'
+import {GetMenu} from '@/api/admin/menu'
+import { encryption, deepClone } from '@/utils/util'
 import {getStore, setStore} from '@/utils/store'
+
+function addPath (ele, first) {
+  const propsDefault = {
+    label: 'label',
+    path: 'path',
+    icon: 'icon',
+    children: 'children'
+  }
+  const isChild = ele[propsDefault.children] && ele[propsDefault.children].length !== 0
+  if (!isChild && first) {
+    ele[propsDefault.path] = ele[propsDefault.path] + '/index'
+    return
+  }
+  ele[propsDefault.children].forEach(child => {
+    if (!isURL(child[propsDefault.path])) {
+      child[propsDefault.path] = `${ele[propsDefault.path]}/${child[propsDefault.path] ? child[propsDefault.path] : 'index'}`
+    }
+    addPath(child)
+  })
+}
 
 const user = {
   state: {
@@ -47,7 +69,7 @@ const user = {
         type: 'session'
       })
     },
-    SET_USERIFNO: (state, userInfo) => {
+    SET_USER_INFO: (state, userInfo) => {
       state.userInfo = userInfo
     },
     SET_MENU: (state, menu) => {
@@ -100,7 +122,7 @@ const user = {
       return new Promise((resolve, reject) => {
         getUserInfo().then((res) => {
           const data = res.data.data || {}
-          commit('SET_USERIFNO', data.sysUser)
+          commit('SET_USER_INFO', data.sysUser)
           commit('SET_ROLES', data.roles || [])
           commit('SET_PERMISSIONS', data.permissions || [])
           resolve(data)
@@ -152,6 +174,20 @@ const user = {
         commit('SET_ROLES', [])
         commit('DEL_ALL_TAG')
         resolve()
+      })
+    },
+    // 获取系统菜单
+    GetMenu ({ commit }) {
+      return new Promise(resolve => {
+        GetMenu().then((res) => {
+          const data = res.data.data
+          let menu = deepClone(data)
+          menu.forEach(ele => {
+            addPath(ele)
+          })
+          commit('SET_MENU', menu)
+          resolve(menu)
+        })
       })
     }
   }

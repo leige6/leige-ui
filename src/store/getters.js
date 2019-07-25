@@ -20,8 +20,7 @@ const getters = {
   permissions: state => state.user.permissions,
   menu: state => state.user.menu,
   menuAll: state => state.user.menuAll,
-  logsList: state => state.logs.logsList,
-  logsLen: state => state.logs.logsList.length || 0,
-  logsFlag: (state, getters) => getters.logsLen === 0
+  sidebarFold: state => state.common.sidebarFold,
+  documentClientHeight: state => state.common.documentClientHeight
 }
 export default getters

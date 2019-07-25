@@ -1,12 +1,29 @@
-import Layout from '@/pages/index/layout'
+import Layout from '@/pages/main/main'
 export default [{
-  path: '/wel',
+  path: '/',
   component: Layout,
-  redirect: '/wel/index',
+  redirect: '/home',
   children: [{
-    path: 'index',
-    name: '首页',
-    component: () =>
-            import(/* webpackChunkName: "views" */ '@/pages/wel')
+    path: 'home',
+    name: 'home',
+    component: () => import('@/pages/home/index'),
+    meta: {title: '首页', icon: 'home', isTab: true}
+  },
+  {
+    path: 'demo-echarts',
+    name: 'demo-echarts',
+    component: () => import('@/pages/demo/echarts'),
+    meta: {title: 'demo', icon: 'demo', isTab: true}
+  }]
+},
+{
+  path: '/myiframe',
+  component: Layout,
+  redirect: '/myiframe',
+  children: [{
+    path: ':routerPath',
+    name: 'iframe',
+    component: () => import('@/components/iframe/main'),
+    props: true
   }]
 }]

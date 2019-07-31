@@ -2,7 +2,8 @@
   <el-dialog
     title="修改密码"
     :visible.sync="visible"
-    :append-to-body="true">
+    :append-to-body="true"
+    width="500px">
     <el-form :model="dataForm" :rules="dataRule" ref="dataForm" @keyup.enter.native="dataFormSubmit()" label-width="80px">
       <el-form-item label="账号">
         <span>{{ userInfo.username }}</span>

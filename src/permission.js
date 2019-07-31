@@ -8,6 +8,7 @@ import { Message } from 'element-ui'
 const whiteList = ['/login'] // 不重定向白名单
 router.beforeEach((to, from, next) => {
   console.log(to.fullPath)
+  console.log(to.meta.keepAlive)
   // 缓冲设置
   if (to.meta.keepAlive === true && store.state.tags.tagList.some(ele => {
     return ele.value === to.fullPath
@@ -22,6 +23,7 @@ router.beforeEach((to, from, next) => {
     }
   }
   const meta = to.meta || {}
+  console.log(JSON.stringify(meta))
   if (store.getters.access_token) {
     if (to.path == '/login') {
       next({ path: '/' })

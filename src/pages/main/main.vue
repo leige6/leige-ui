@@ -9,7 +9,10 @@
       <main-sidebar />
       <div class="site-content__wrapper" :style="{ 'min-height': documentClientHeight + 'px' }">
         <main-tags />
-          <router-view/>
+        <keep-alive>
+          <router-view v-if="$route.meta.$keepAlive"/>
+        </keep-alive>
+        <router-view v-if="!$route.meta.$keepAlive"/>
       </div>
     </template>
   </div>
@@ -21,16 +24,10 @@ import MainNavbar from './main-navbar'
 import MainSidebar from './main-sidebar'
 import MainTags from './main-tags'
 export default {
-  provide () {
-    return {
-      // 刷新
-      refresh () {
-      }
-    }
-  },
   data () {
     return {
-      loading: true
+      loading: true,
+      isNeedRefresh: true
     }
   },
   components: {

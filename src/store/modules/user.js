@@ -85,6 +85,11 @@ const user = {
     },
     SET_ROLES: (state, roles) => {
       state.roles = roles
+      setStore({
+        name: 'roles',
+        content: state.roles,
+        type: 'session'
+      })
     },
     SET_PERMISSIONS: (state, permissions) => {
       const list = {}

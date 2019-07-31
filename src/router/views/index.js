@@ -6,8 +6,7 @@ export default [{
   children: [{
     path: 'home',
     name: 'home',
-    component: () => import('@/pages/home/index'),
-    meta: {title: '首页', icon: 'home', isTab: true}
+    component: () => import('@/pages/home/index')
   },
   {
     path: 'demo-echarts',

@@ -13,13 +13,14 @@
         <el-menu-item class="site-navbar__switch" index="0" @click="zhedie()">
           <i class="icon-zhedie"></i>
         </el-menu-item>
-        <el-menu-item class="site-navbar__switch" index="1" @click="refresh()">
-          <i class="icon-shuaxin"></i>
-        </el-menu-item>
       </el-menu>
       <el-menu
         class="site-navbar__menu site-navbar__menu--right"
         mode="horizontal">
+        <el-menu-item class="site-navbar__fullscren"  index="2">
+          <i :class="isFullScren?'icon-tuichuquanping':'icon-quanping'"
+             @click="handleScreen"></i>
+        </el-menu-item>
         <el-menu-item class="site-navbar__avatar" index="3">
           <el-dropdown :show-timeout="0" placement="bottom">
             <span class="el-dropdown-link">
@@ -39,6 +40,7 @@
 </template>
 
 <script>
+import { fullscreenToggel, listenfullscreen } from '@/utils/util'
 import { mapGetters } from 'vuex'
 import UpdatePassword from './main-navbar-update-password'
 export default {
@@ -53,12 +55,22 @@ export default {
   components: {
     UpdatePassword
   },
+  mounted () {
+    listenfullscreen(this.setScreen)
+  },
   computed: {
     ...mapGetters([
-      'userInfo'
+      'userInfo', 'isFullScren'
     ])
   },
   methods: {
+    handleScreen () {
+      fullscreenToggel()
+      this.resetDocumentClientHeight()
+    },
+    setScreen () {
+      this.$store.commit('SET_FULLSCREN')
+    },
     // 折叠菜单
     zhedie () {
       this.$store.commit('SET_SIDEBAR_FOLD')
@@ -81,6 +93,16 @@ export default {
           this.$router.push({ path: '/login' })
         })
       })
+    },
+    resetDocumentClientHeight () {
+      var _this = this
+      setTimeout(function () {
+        var documentClientHeight = document.documentElement['clientHeight']
+        window.onresize = () => {
+          documentClientHeight = document.documentElement['clientHeight']
+        }
+        _this.$store.commit('SET_DOCUMENT_CLIENT_HEIGHT', documentClientHeight)
+      }, '100')
     }
   }
 }

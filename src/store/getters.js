@@ -21,6 +21,7 @@ const getters = {
   menu: state => state.user.menu,
   menuAll: state => state.user.menuAll,
   sidebarFold: state => state.common.sidebarFold,
-  documentClientHeight: state => state.common.documentClientHeight
+  documentClientHeight: state => state.common.documentClientHeight,
+  getDocumentClientHeight: state => state.common.documentClientHeight
 }
 export default getters

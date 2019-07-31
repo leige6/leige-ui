@@ -10,14 +10,14 @@
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item @click.native="tabsCloseOtherHandle">关闭其它标签页</el-dropdown-item>
           <el-dropdown-item @click.native="tabsCloseAllHandle">关闭全部标签页</el-dropdown-item>
-          <el-dropdown-item @click.native="refresh()">刷新当前标签页</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
       <el-tab-pane :key="item.label"
                    v-for="item in tagList"
                    :name="item.value"
                    :closable="!(item.label=='home')">
-        <span slot="label"> <i class="icon-home" v-if="item.label=='home'"></i> {{item.label}}</span>
+        <span slot="label" v-if="item.label=='home'"> <i class="icon-home" ></i></span>
+        <span slot="label" v-else>{{item.label}}</span>
       </el-tab-pane>
     </el-tabs>
   </main>
@@ -27,7 +27,6 @@
 import { mapGetters } from 'vuex'
 import { isURL } from '@/utils/validate'
 export default {
-  inject: ['refresh'],
   data () {
     return {
       active: ''

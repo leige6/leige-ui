@@ -1,7 +1,7 @@
 <template>
   <el-submenu
     v-if="menu.children && menu.children.length >= 1"
-    :index="menu.id + ''"
+    :index="menu.path"
     :popper-class="'site-sidebar--' + sidebarLayoutSkin + '-popper'">
     <template slot="title">
       <!--<icon-svg :name="menu.icon || ''" class="site-sidebar__menu-icon"></icon-svg>-->
@@ -14,7 +14,7 @@
       :menu="item">
     </sub-menu>
   </el-submenu>
-  <el-menu-item v-else :index="menu.id + ''" @click="open(menu)">
+  <el-menu-item v-else :index="menu.path" @click="open(menu)">
     <!--<icon-svg :name="menu.icon || ''" class="site-sidebar__menu-icon"></icon-svg>-->
     <i :class="menu.icon"></i>
     <span>{{ menu.name }}</span>

@@ -57,8 +57,8 @@ axios.interceptors.response.use(
     return response
   },
   error => {
-    const status = error.response.status
-    const message = errorCode[status] || error.response.message || errorCode['default']
+    const status = error.response == undefined ? null : error.response.status
+    const message = errorCode[status] || error.response == undefined ? errorCode['default'] : error.response.message
     Message({
       message: message,
       type: 'error',

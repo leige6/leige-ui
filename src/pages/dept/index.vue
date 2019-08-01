@@ -77,7 +77,7 @@
 
 <script>
 import {mapGetters} from 'vuex'
-import {fetchTree,delObj} from '@/api/admin/dept'
+import {fetchTree, delObj} from '@/api/admin/dept'
 import AddOrUpdate from './dept-add-or-update'
 import { treeDataTranslate } from '@/utils/util'
 export default {

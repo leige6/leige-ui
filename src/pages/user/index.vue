@@ -16,6 +16,7 @@
       border
       v-loading="dataListLoading"
       @selection-change="selectionChangeHandle"
+      :row-class-name="tableRowClassName"
       style="width: 100%;">
       <el-table-column
         type="selection"
@@ -197,6 +198,14 @@ export default {
           }
         })
       }).catch(() => {})
+    },
+    tableRowClassName ({row, rowIndex}) {
+      if (rowIndex % 4 === 1) {
+        return 'warning-row'
+      } else if (rowIndex % 4 === 3) {
+        return 'success-row'
+      }
+      return ''
     }
   }
 }

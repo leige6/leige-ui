@@ -44,3 +44,12 @@ export function putObj (obj) {
     data: obj
   })
 }
+/*
+  根据角色id获取菜单
+ */
+export function fetchMenuByRoid (id) {
+  return request({
+    url: '/admin/menu/tree/' + id,
+    method: 'get'
+  })
+}

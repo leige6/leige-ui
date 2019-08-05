@@ -52,7 +52,10 @@ axios.interceptors.response.use(
         message: message,
         type: 'error'
       })
-      return Promise.reject(new Error(message))
+      new Promise(function (resolve, reject) {
+        return reject(new Error(message))
+      }).catch(function (reason) {
+      })
     }
     return response
   },

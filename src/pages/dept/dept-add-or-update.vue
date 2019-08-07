@@ -124,9 +124,9 @@ export default {
       this.clearable = true
     },
     deptParentNameClear () {
-      console.log('------')
       this.dataForm.parentId = 0
       this.dataForm.parentName = '一级部门'
+      this.$refs.deptListTree.setCurrentKey(this.dataForm.parentId)
       this.clearable = false
     },
     // 表单提交

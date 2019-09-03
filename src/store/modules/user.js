@@ -130,7 +130,7 @@ const user = {
           commit('SET_USER_INFO', data.sysUser)
           commit('SET_ROLES', data.roles || [])
           commit('SET_PERMISSIONS', data.permissions || [])
-          resolve(data)
+          resolve(res)
         }).catch((err) => {
           reject(err)
         })

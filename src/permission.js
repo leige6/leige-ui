@@ -30,8 +30,16 @@ router.beforeEach((to, from, next) => {
       NProgress.done()
     } else {
       if (store.getters.roles.length == 0) {
-        store.dispatch('GetUserInfo').then(res => { // 拉取用户信息
-          next({...to, replace: true})
+        store.dispatch('GetUserInfo').then(({data}) => { // 拉取用户信息
+          console.log(JSON.stringify(data))
+          if (data.code == 0) {
+            next({...to, replace: true})
+          } else {
+            store.dispatch('FedLogOut').then(() => {
+              Message.error(data.msg)
+              next({ path: '/' })
+            })
+          }
         }).catch((err) => {
           store.dispatch('FedLogOut').then(() => {
             Message.error(err || 'Verification failed, please login again')

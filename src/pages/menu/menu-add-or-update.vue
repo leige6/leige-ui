@@ -49,7 +49,7 @@
                    :inactive-value='"1"'>
         </el-switch>
       </el-form-item>
-      <el-form-item  label="排序" prop="orderNum">
+      <el-form-item  label="排序" prop="sort">
         <el-input-number v-model="dataForm.sort" controls-position="right" :min="0" label="排序"></el-input-number>
       </el-form-item>
       <el-form-item v-if="dataForm.type === 0" label="菜单图标" prop="icon">

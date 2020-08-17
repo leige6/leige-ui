@@ -8,7 +8,7 @@ export const loginByUsername = (username, password, code, randomStr) => {
     headers: {
       isToken: false,
       'TENANT_ID': '1',
-      'Authorization': 'Basic cGlnOnBpZw=='
+      'Authorization': 'Basic bG9sYWJjOmxvbGFiYw=='
     },
     method: 'post',
     params: { username, password, randomStr, code, grant_type, scope }
@@ -22,7 +22,7 @@ export const refreshToken = (refreshToken) => {
     headers: {
       'isToken': false,
       'TENANT_ID': '1',
-      'Authorization': 'Basic cGlnOnBpZw=='
+      'Authorization': 'Basic bG9sYWJjOmxvbGFiYw=='
     },
     method: 'post',
     params: { refreshToken, grant_type, scope }

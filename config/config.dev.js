@@ -11,6 +11,7 @@ module.exports = {
   servers: {
     code: 'http://localhost:9999',
     admin: 'http://localhost:9999',
-    auth: 'http://localhost:9999'
+    auth: 'http://localhost:9999',
+    gen: 'http://localhost:9999'
   }
 }
